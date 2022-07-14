@@ -57,7 +57,7 @@ export default function ScreenB({navigation}) {
     <View style={styles.backgroundStyle}>
       <View>
         {err && <Text style={styles.textStyle}>{message}</Text>}
-        {selectionErrMessage && <Text>{selectionErrMessage}</Text>}
+        {selectionErrMessage && <Text style={styles.textStyle}>{selectionErrMessage}</Text>}
       </View>
       <RadioGroup radioButtons={radioButtons} onPress={onPressRadioButton} />
       <TouchableForwardArrowIcon

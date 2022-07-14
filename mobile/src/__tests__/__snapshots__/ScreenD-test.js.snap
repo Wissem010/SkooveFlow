@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "lightblue",
+      "display": "flex",
+      "height": "100%",
+      "justifyContent": "center",
+    }
+  }
+>
+  <Image
+    height={64}
+    source={
+      Object {
+        "testUri": "../../../src/assets/check.png",
+      }
+    }
+  />
+</View>
+`;

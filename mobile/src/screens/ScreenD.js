@@ -1,5 +1,7 @@
-import {View, StyleSheet, Image} from 'react-native';
+//react imports
 import React from 'react';
+//Ui imports
+import {View, StyleSheet, Image} from 'react-native';
 
 export default function ScreenD() {
   return (
