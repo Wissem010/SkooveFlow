@@ -1,5 +1,5 @@
 import React from 'react';
-import {render} from '@testing-library/react';
+import renderer from 'react-test-renderer';
 import {configureStore} from '@reduxjs/toolkit';
 import {Provider} from 'react-redux';
 import {expirementReducer} from '../redux/slices/expirementSlice';
@@ -22,6 +22,5 @@ export function renderWithProviders(
   function Wrapper({children}) {
     return <Provider store={store}>{children}</Provider>;
   }
-
-  return {store, ...render(ui, {wrapper: Wrapper, ...renderOptions})};
+  return {store, ...renderer.create(ui, {wrapper: Wrapper, ...renderOptions})};
 }

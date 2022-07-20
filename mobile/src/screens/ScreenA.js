@@ -17,8 +17,7 @@ export default function ScreenA({navigation}) {
   const {loading, nextScreen, err, message} = useSelector(
     state => state.expirementReducer,
   );
-
-  React.useEffect(() => {
+  useEffect(() => {
     return navigation.addListener('focus', () => {
       dispatch(rFetchExpirements());
     });
@@ -36,8 +35,6 @@ export default function ScreenA({navigation}) {
       }, 5000);
     }
   }, [nextScreen]);
-
-  console.log('nextScreen', nextScreen);
 
   return (
     <View style={styles.backgroundStyle}>

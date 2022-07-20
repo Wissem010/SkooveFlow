@@ -1,13 +1,46 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Spinner from '../components/Spinner';
+import * as reactRedux from 'react-redux';
+
 import {REDIRECT_MESSAGE, SCREEN_B, SCREEN_D} from '../constants/strings';
 import {
   expirementReducer,
   resetScreenAState,
   rFetchExpirements,
 } from '../redux/slices/expirementSlice';
+import ScreenA from '../screens/ScreenA';
+import {renderWithProviders} from '../utils/testUtils';
 
+//Mocking navigation functions
+const mockNavigation = {
+  navigate: jest.fn(),
+  addListener: jest.fn(),
+};
+
+//Mocking redux functions
+jest.mock('react-redux', () => ({
+  useSelector: jest.fn(),
+  useDispatch: jest.fn(),
+}));
+
+const mockStore = {
+  expirementReducer,
+};
+const useSelectorMock = reactRedux.useSelector;
+const useDispatchMock = reactRedux.useDispatch;
+
+//Initializing mocks
+beforeEach(() => {
+  useDispatchMock.mockImplementation(() => () => {});
+  useSelectorMock.mockImplementation(selector => selector(mockStore));
+});
+afterEach(() => {
+  useDispatchMock.mockClear();
+  useSelectorMock.mockClear();
+});
+
+//Tests
 test('renders correctly', () => {
   const tree = renderer.create(<Spinner />).toJSON();
   expect(tree).toMatchSnapshot();
@@ -53,7 +86,7 @@ describe('SELECTION SLICE TESTS', () => {
 
   it('should set correct screen when action is fulfilled', () => {
     const action = {
-      type: rFetchExpirements.pending,
+      type: rFetchExpirements.fulfilled,
     };
     const state = expirementReducer(
       {
@@ -90,4 +123,11 @@ describe('SELECTION SLICE TESTS', () => {
       nextScreen: SCREEN_D,
     });
   });
+});
+
+test('renders screenA with providers correctly', () => {
+  const tree = renderWithProviders(
+    <ScreenA navigation={mockNavigation} />,
+  ).toJSON();
+  expect(tree).toMatchSnapshot();
 });

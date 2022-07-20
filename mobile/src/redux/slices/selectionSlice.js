@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {RETRY_MESSAGE, SCREEN_D} from '../../constants/strings';
-import {APP_URL} from "@env"
+import {APP_URL} from '@env';
 import axios from 'axios';
 
 export const rSubmitSelection = createAsyncThunk(

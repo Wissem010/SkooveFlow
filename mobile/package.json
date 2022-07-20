@@ -39,6 +39,12 @@
     "react-test-renderer": "18.0.0"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "/node_modules/@mdhnpm/(?!react-native-radio-buttons-group)"
+    ],
+    "setupFiles": [
+      "./src/utils/jestSetupFile.js"
+    ]
   }
 }
